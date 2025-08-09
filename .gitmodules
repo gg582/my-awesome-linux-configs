@@ -1,6 +1,4 @@
-[submodule "04-make-custom-laptop-governor/governor-src/laputil"]
-	path = 04-make-custom-laptop-governor/governor-src/laputil
-	url = https://github.com/gg582/laputil
 [submodule "04-make-custom-laptop-governor/laputil"]
 	path = 04-make-custom-laptop-governor/laputil
 	url = https://github.com/gg582/laputil
+    branch = main
