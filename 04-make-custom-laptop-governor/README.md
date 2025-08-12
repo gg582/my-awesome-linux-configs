@@ -6,5 +6,5 @@ This will be a great choice when compared to `powersave`.
 - Enter `laptuil`
 - Follow README.md
 - `sudo modprobe cpufreq_laputil`
-- Install a Service file
+- (Optional) Install a Service file
 - (Optional) Enable a service file
