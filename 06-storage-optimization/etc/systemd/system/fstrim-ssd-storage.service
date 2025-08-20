@@ -1,0 +1,10 @@
+[Unit]
+Description=Custom periodic TRIM of all SSDs
+
+[Service]
+Type=oneshot
+ExecStart=/usr/sbin/fstrim -av
+
+[Install]
+WantedBy=timers.target
+

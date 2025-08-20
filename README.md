@@ -1,5 +1,5 @@
 ## Project Tree
-```
+```tree
 .
 ├── 01-awesome-tcp-network-tuning
 │   └── etc
@@ -24,28 +24,90 @@
 │       ├── kernel
 │       │   └── cmdline
 │       ├── sysctl.conf
-│       ├── system
-│       │   └── cpugovernor.service
 │       ├── systemd
+│       │   └── system
+│       │       └── cpugovernor.service
 │       └── udev
 │           └── rules.d
 │               └── 60-schedulers.rules
+├── 04-make-custom-laptop-governor
+│   ├── README.md
+│   ├── etc
+│   │   └── systemd
+│   │       └── system
+│   │           └── cpugovernor.service
+│   └── laputil
+│       ├── Makefile
+│       ├── README.md
+│       ├── cpufreq_laputil.c
+│       ├── dkms.conf
+│       ├── install.sh
+│       ├── scripts
+│       │   └── generate_ac_headers.sh
+│       └── update.sh
+├── 05-criu-based-application-recovery
+│   ├── etc
+│   │   └── systemd
+│   │       └── system
+│   │           └── criu-hibernate.service
+│   └── usr
+│       └── local
+│           └── bin
+│               ├── criu-restore.sh
+│               └── criu-suspend.sh
+├── 06-storage-optimization
+│   ├── README.md
+│   └── etc
+│       └── systemd
+│           └── system
+│               ├── fstrim-ssd-storage.service
+│               └── fstrim-ssd-storage.timer
 └── README.md
 
-18 directories, 13 files
+35 directories, 28 files
 
 ```
+**WARNING: Performance and battery life may vary depending on system and usage.**
 ### 01-howdy-3-face-unlock-pam
-You can use face recongition based PAM authorization after installing howdy v3 beta.
+Enable PAM authentication via face recognition after installing Howdy v3 beta.
 
 ### 01-grub-k8s-cgroup-v2
+Custom GRUB configuration for Kubernetes cgroup v2.
 ### 01-awesome-tcp-network-tuning
-This is a normal network tuning for linux servers.
-### 02-controversial-tcp-network-tuning
-Controversal and dangerous settings are here.
-Don't use it directly on your machine.
-### 03-m1-macbook-arm-linux-tcp-network-tuning-for-daily-use
-This is mainly about TCP tuning, but it also includes powersave options.
-This can cause performance degradation. However, I chose power-saving modes over performance.
-This will run your machine 10-13 hours long.
-In my case, my machine's battery life is 93% full. I achieved 10-11 hours from this.
+Normal TCP/network tuning for Linux servers.
+## 02-controversial-tcp-network-tuning
+Contains controversial and potentially dangerous TCP/network settings.
+**Do NOT apply directly to your system.**
+
+## 03-m1-macbook-arm-linux-tcp-network-tuning-for-daily-use
+TCP tuning and power-saving configuration for M1 MacBooks running Linux.
+- May slightly reduce performance but prioritizes battery life
+- Expected runtime: **10–13 hours**
+- On my MacBook (battery health 95%, conservative usage), achieved **10–11 hours**
+
+Includes:
+TCP tuning
+Powersave options
+Kernel cmdline tweaks
+CPU governor configuration
+Scheduler rules
+## 04-make-custom-laptop-governor
+Custom laptop CPU governor developed for better energy efficiency.
+- Conservative-style policies with smarter frequency scaling
+- Achieves **1–2 hours longer runtime** than project `03-m1-macbook-arm-linux-tcp-network-tuning-for-daily-use`
+
+Includes:
+- Systemd service for CPU governor
+- Laputil C tool for CPU frequency management
+- Scripts for AC headers and DKMS integration
+## 05-criu-based-application-recovery
+Recover application states using **CRIU (Checkpoint/Restore in Userspace)**
+- Useful after system hibernation or crashes
+- Includes scripts to suspend and restore processes
+## 06-storage-optimization
+SSD optimization via filesystem trimming
+- Improves write performance and storage health
+- Extends SSD lifespan compared to untrimmed setups
+
+Includes:
+- Systemd timer and service for automated fstrim

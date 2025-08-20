@@ -1,0 +1,13 @@
+[Unit]
+Description=CRIU pseudo suspend + optional real suspend
+Before=sleep.target
+StopWhenUnneeded=yes
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/criu-suspend.sh
+ExecStop=/usr/local/bin/criu-restore.sh
+
+[Install]
+WantedBy=sleep.target
+
