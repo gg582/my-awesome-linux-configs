@@ -1,0 +1,8 @@
+[Unit]
+Description=Apply laputil governor when AC is plugged in
+After=multi-user.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/sudo /usr/local/bin/laputil-ac.sh
+

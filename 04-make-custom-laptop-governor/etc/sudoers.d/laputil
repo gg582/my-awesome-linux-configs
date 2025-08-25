@@ -1,0 +1,3 @@
+# Allow yjlee to run laputil script without password
+yjlee ALL=(ALL) NOPASSWD: /usr/local/bin/laputil-ac.sh
+
