@@ -9,6 +9,7 @@
 │       └── default
 │           └── grub
 ├── 01-howdy-3-face-unlock-pam
+│   ├── README.md
 │   └── etc
 │       └── pam.d
 │           ├── login
@@ -19,6 +20,7 @@
 │   └── etc
 │       └── sysctl.conf
 ├── 03-m1-macbook-arm-linux-tcp-network-tuning-for-daily-use
+│   ├── BOOST.md
 │   ├── README.md
 │   └── etc
 │       ├── kernel
@@ -33,18 +35,31 @@
 ├── 04-make-custom-laptop-governor
 │   ├── README.md
 │   ├── etc
-│   │   └── systemd
-│   │       └── system
-│   │           └── cpugovernor.service
-│   └── laputil
-│       ├── Makefile
-│       ├── README.md
-│       ├── cpufreq_laputil.c
-│       ├── dkms.conf
-│       ├── install.sh
-│       ├── scripts
-│       │   └── generate_ac_headers.sh
-│       └── update.sh
+│   │   ├── acpi
+│   │   │   └── laputil-ac.sh
+│   │   ├── sudoers.d
+│   │   │   └── laputil
+│   │   ├── systemd
+│   │   │   └── system
+│   │   │       ├── cpugovernor.service
+│   │   │       └── laputil-ac.service
+│   │   └── udev
+│   │       └── rules.d
+│   │           └── 99-laputil.rules
+│   ├── laputil
+│   │   ├── Makefile
+│   │   ├── README.md
+│   │   ├── cpufreq_laputil.c
+│   │   ├── dkms.conf
+│   │   ├── install.sh
+│   │   ├── lp-e.patch
+│   │   ├── scripts
+│   │   │   └── generate_ac_headers.sh
+│   │   └── update.sh
+│   └── usr
+│       └── local
+│           └── bin
+│               └── laputil-ac.sh
 ├── 05-criu-based-application-recovery
 │   ├── etc
 │   │   └── systemd
@@ -62,10 +77,17 @@
 │           └── system
 │               ├── fstrim-ssd-storage.service
 │               └── fstrim-ssd-storage.timer
+├── 07-sysctl-for-screen-mirroring
+│   ├── 01-client-side
+│   │   └── etc
+│   │       └── sysctl.conf
+│   ├── 02-server-side
+│   │   └── etc
+│   │       └── sysctl.conf
+│   └── README.md
 └── README.md
 
-35 directories, 28 files
-
+47 directories, 39 files
 ```
 **WARNING: Performance and battery life may vary depending on system and usage.**
 ### 01-howdy-3-face-unlock-pam
@@ -111,3 +133,8 @@ SSD optimization via filesystem trimming
 
 Includes:
 - Systemd timer and service for automated fstrim
+
+## 07-sysctl-for-screen-mirroring
+Sysctl for screen mirroring clients(e.g. XRDP, Sunshine)
+- Improves Buffering on client
+- Has two different configuration for server and client
